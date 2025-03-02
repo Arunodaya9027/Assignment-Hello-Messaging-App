@@ -11,7 +11,7 @@ public class MessagingAppController {
     }
 
     @GetMapping("/hello/query")
-    public String hello(@RequestParam String name) {
+    public String hello(@RequestParam(name = "name", defaultValue = "World") String name) {
         return "Hello " + name + " from BridgeLabz!";
     }
 
@@ -23,5 +23,10 @@ public class MessagingAppController {
     @PostMapping("/hello/post")
     public String hello(@RequestBody UserDTO user) {
         return "Hello " + user.getFirstName() + " " + user.getLastName() + " from BridgeLabz!";
+    }
+
+    @PutMapping("/hello/put/{firstName}")
+    public String helloPut(@PathVariable String firstName, @RequestParam(name = "lastName") String lastName) {
+        return "Hello " + firstName + " " + lastName + " from BridgeLabz!";
     }
 }
